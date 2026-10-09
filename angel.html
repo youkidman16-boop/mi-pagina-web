@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Mi Sitio Web (Ángel Geovany)</title>
+    <style>
+        /* Variables globales con estética FNF */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --fnf-pink: #ff007c;
+            --fnf-cyan: #00ffff;
+            --fnf-dark: #120c1f;
+            --fnf-card: #201535;
+            --fnf-text: #f0f0f5;
+            --fnf-purple: #a855f7;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--fnf-text);
+            background-color: var(--fnf-dark);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Encabezado */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            background-color: #1a0f2e;
+            color: #ffffff;
+            padding: 20px;
+            gap: 20px;
+            border-bottom: 4px solid var(--fnf-pink);
+        }
+
+        .header-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 0px var(--fnf-pink);
+        }
+
+        .logo-pequeno {
+            max-width: 140px;
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+            filter: drop-shadow(0 0 8px var(--fnf-cyan));
+        }
+
+        /* Navegación */
+        .barra-navegacion {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .boton-nav {
+            text-decoration: none;
+            color: #ffffff;
+            background-color: #311b57;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--fnf-cyan);
+            transition: all 0.3s ease;
+        }
+
+        .boton-nav:hover {
+            background-color: var(--fnf-cyan);
+            color: var(--fnf-dark);
+            box-shadow: 0 0 10px var(--fnf-cyan);
+        }
+
+        .boton-nav.activo {
+            background-color: var(--fnf-pink);
+            color: #ffffff;
+            border-color: var(--fnf-pink);
+            box-shadow: 0 0 10px var(--fnf-pink);
+        }
+
+        /* Contenedor Principal */
+        main {
+            display: flex;
+            flex: 1;
+            padding: 20px;
+            gap: 20px;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Barra Lateral: Datos del Dueño */
+        aside {
+            flex: 1;
+            background-color: var(--fnf-card);
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid var(--fnf-pink);
+        }
+
+        .perfil-box {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid var(--fnf-cyan);
+        }
+
+        .perfil-box h4 {
+            color: var(--fnf-cyan);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+        }
+
+        .perfil-box p {
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+
+        .highlight {
+            color: var(--fnf-pink);
+            font-weight: bold;
+        }
+
+        /* Sección de Contenido: Presentación */
+        section {
+            flex: 3;
+            background-color: var(--fnf-card);
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid var(--fnf-cyan);
+        }
+
+        h2, h3 {
+            color: var(--fnf-cyan);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            border-bottom: 2px solid rgba(0, 255, 255, 0.2);
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            margin-top: 25px;
+            font-size: 1.3rem;
+        }
+
+        /* Lista de favoritos */
+        .fav-list {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .fav-list li {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            border-left: 4px solid var(--fnf-pink);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .char-tag {
+            font-size: 0.85rem;
+            background: #120c1f;
+            padding: 2px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .tag-canon { color: var(--fnf-cyan); border: 1px solid var(--fnf-cyan); }
+        .tag-mod { color: var(--fnf-purple); border: 1px solid var(--fnf-purple); }
+
+        /* Pie de página */
+        footer {
+            background-color: #0b0714;
+            color: #7c6f93;
+            text-align: center;
+            padding: 15px;
+            margin-top: auto;
+            border-top: 2px solid #201535;
+            font-size: 0.9rem;
+        }
+
+        /* Adaptabilidad para Teléfonos */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .barra-navegacion {
+                justify-content: center;
+            }
+
+            main {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            .logo-pequeno {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-info">
+            <h1>Friday Night Funkin'</h1>
+            <nav class="barra-navegacion">
+                <a href="angel.html" class="boton-nav activo">Inicio</a>
+                <a href="angel2.html" class="boton-nav">Servicios</a>
+                <a href="angel3.html" class="boton-nav">Contacto</a>
+            </nav>
+        </div>
+        <img src="fnf.jpg" alt="Logo de FNF" class="logo-pequeno">
+    </header>
+
+    <main>
+        <aside>
+            <h3>Administrador</h3>
+            <p>Información del creador y propietario oficial de este espacio web.</p>
+            
+            <div class="perfil-box">
+                <h4>Propietario:</h4>
+                <p><span class="highlight">ANGEL GEOVANY PEREZ TORRES</span></p>
+                <h4>Edad:</h4>
+                <p>17 años</p>
+                <h4>Rol:</h4>
+                <p>Dueño del Sitio Web</p>
+            </div>
+        </aside>
+
+        <section>
+            <h2>¡Bienvenidos a mi sitio web!</h2>
+            <p>Hola, mi nombre es <strong>Angel Geovany</strong> y soy el creador y dueño de esta página. He diseñado este espacio especialmente para hablar de uno de los videojuegos de ritmo más influyentes y populares de los últimos años: <strong>Friday Night Funkin' (FNF)</strong>.</p>
+            
+            <p style="margin-top: 10px;">A lo largo de este sitio web podrás explorar todo sobre su historia musical, mecánicas de juego, su asombrosa comunidad y el inmenso universo de modificaciones (Mods) que expanden constantemente esta aventura urbana.</p>
+
+            <h3>Mis Personajes Favoritos</h3>
+            <p>Dentro del gigantesco elenco que compone tanto el juego base como los mejores mods de la comunidad, estos son mis preferidos indiscutibles:</p>
+            
+            <ul class="fav-list">
+                <li>
+                    <span><strong>Boyfriend</strong></span> 
+                    <span class="char-tag tag-canon">Canon</span>
+                </li>
+                <li>
+                    <span><strong>Girlfriend</strong></span> 
+                    <span class="char-tag tag-canon">Canon</span>
+                </li>
+                <li>
+                    <span><strong>Garcello</strong></span> 
+                    <span class="char-tag tag-mod">Mod (Vs. Garcello)</span>
+                </li>
+                <li>
+                    <span><strong>Nikusa</strong></span> 
+                    <span class="char-tag tag-mod">Mod (Entity)</span>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Diseñado por Angel Geovany Perez Torres. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
+

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto y Personajes - Friday Night Funkin'</title>
+    <style>
+        /* Variables globales con estética FNF */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --fnf-pink: #ff007c;
+            --fnf-cyan: #00ffff;
+            --fnf-dark: #120c1f;
+            --fnf-card: #201535;
+            --fnf-text: #f0f0f5;
+            --fnf-purple: #a855f7;
+            --fnf-green: #39ff14;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--fnf-text);
+            background-color: var(--fnf-dark);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Encabezado */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            background-color: #1a0f2e;
+            color: #ffffff;
+            padding: 20px;
+            gap: 20px;
+            border-bottom: 4px solid var(--fnf-pink);
+        }
+
+        .header-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 0px var(--fnf-pink);
+        }
+
+        .logo-pequeno {
+            max-width: 140px;
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+            filter: drop-shadow(0 0 8px var(--fnf-cyan));
+        }
+
+        /* Navegación */
+        .barra-navegacion {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .boton-nav {
+            text-decoration: none;
+            color: #ffffff;
+            background-color: #311b57;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--fnf-cyan);
+            transition: all 0.3s ease;
+        }
+
+        .boton-nav:hover {
+            background-color: var(--fnf-cyan);
+            color: var(--fnf-dark);
+            box-shadow: 0 0 10px var(--fnf-cyan);
+        }
+
+        .boton-nav.activo {
+            background-color: var(--fnf-pink);
+            color: #ffffff;
+            border-color: var(--fnf-pink);
+            box-shadow: 0 0 10px var(--fnf-pink);
+        }
+
+        /* Contenedor Principal */
+        main {
+            display: flex;
+            flex: 1;
+            padding: 20px;
+            gap: 20px;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Barra Lateral: Créditos y Derechos de Autor */
+        aside {
+            flex: 1;
+            background-color: var(--fnf-card);
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid var(--fnf-pink);
+        }
+
+        .copyright-box {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid var(--fnf-pink);
+        }
+
+        .copyright-box h4 {
+            color: var(--fnf-pink);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .copyright-box ul {
+            list-style: none;
+            font-size: 0.9rem;
+        }
+
+        .copyright-box li {
+            margin-bottom: 5px;
+        }
+
+        /* Sección de Contenido: Personajes */
+        section {
+            flex: 3;
+            background-color: var(--fnf-card);
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid var(--fnf-cyan);
+        }
+
+        h2, h3 {
+            color: var(--fnf-cyan);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            border-bottom: 2px solid rgba(0, 255, 255, 0.2);
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            margin-top: 25px;
+            font-size: 1.3rem;
+        }
+
+        .subtitulo-canon { color: var(--fnf-cyan); }
+        .subtitulo-nocanon { color: var(--fnf-pink); }
+
+        /* Estilos de Lista de Personajes */
+        .character-list {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .character-list li {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            border-left: 4px solid transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .character-list.canon li { border-left-color: var(--fnf-cyan); }
+        .character-list.no-canon li { border-left-color: var(--fnf-pink); }
+
+        .char-name { font-weight: bold; }
+        .char-origin {
+            font-size: 0.85rem;
+            background: #120c1f;
+            padding: 2px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+        
+        .char-origin.week { color: var(--fnf-cyan); border: 1px solid var(--fnf-cyan); }
+        .char-origin.mod { color: var(--fnf-pink); border: 1px solid var(--fnf-pink); }
+
+        /* Pie de página */
+        footer {
+            background-color: #0b0714;
+            color: #7c6f93;
+            text-align: center;
+            padding: 15px;
+            margin-top: auto;
+            border-top: 2px solid #201535;
+            font-size: 0.9rem;
+        }
+
+        /* Adaptabilidad para Teléfonos */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .barra-navegacion {
+                justify-content: center;
+            }
+
+            main {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            .logo-pequeno {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-info">
+            <h1>Friday Night Funkin'</h1>
+            <nav class="barra-navegacion">
+                <a href="angel.html" class="boton-nav">Inicio</a>
+                <a href="angel2.html" class="boton-nav">Servicios</a>
+                <a href="angel3.html" class="boton-nav activo">Contacto</a>
+            </nav>
+        </div>
+        <img src="fnf.jpg" alt="Logo de FNF" class="logo-pequeno">
+    </header>
+
+    <main>
+        <aside>
+            <h3>Derechos de Autor</h3>
+            <p>Friday Night Funkin' es un videojuego de código abierto bajo la licencia Apache 2.0. Todos los derechos del juego base pertenecen a sus respectivos creadores.</p>
+            
+            <div class="copyright-box">
+                <h4>The Funkin' Crew:</h4>
+                <ul>
+                    <li><strong>Programación:</strong> ninjamuffin99</li>
+                    <li><strong>Arte y Animación:</strong> PhantomArcade & evilsk8r</li>
+                    <li><strong>Música y Sonido:</strong> Kawai Sprite</li>
+                </ul>
+            </div>
+            <p style="margin-top: 15px; font-size: 0.85rem; color: #aaa;">Los personajes de la comunidad pertenecen a los respectivos desarrolladores de cada Mod.</p>
+        </aside>
+
+        <section>
+            <h2>Elenco Musical de Personajes</h2>
+
+            <h3 class="subtitulo-canon">Personajes Oficiales (Canon)</h3>
+            <p>Aparecen en el juego base y forman parte de la historia principal:</p>
+            <ul class="character-list canon">
+                <li><span class="char-name">Boyfriend & Girlfriend</span> <span class="char-origin week">Protagonistas</span></li>
+                <li><span class="char-name">Daddy Dearest</span> <span class="char-origin week">Semana 1</span></li>
+                <li><span class="char-name">Skid and Pump</span> <span class="char-origin week">Semana 2</span></li>
+                <li><span class="char-name">Monster (Lemon Demon)</span> <span class="char-origin week">Semana 2 / 5</span></li>
+                <li><span class="char-name">Pico</span> <span class="char-origin week">Semana 3</span></li>
+                <li><span class="char-name">Mommy Mearest</span> <span class="char-origin week">Semana 4</span></li>
+                <li><span class="char-name">Senpai / Spirit</span> <span class="char-origin week">Semana 6</span></li>
+                <li><span class="char-name">Tankman</span> <span class="char-origin week">Semana 7</span></li>
+                <li><span class="char-name">Darnell & Nene</span> <span class="char-origin week">Weekend 1</span></li>
+            </ul>
+
+            <h3 class="subtitulo-nocanon">Comunidad y Expansiones (NO Canon Populares)</h3>
+            <p>Contenido creado por fans que alcanzó una fama descomunal en internet:</p>
+            <ul class="character-list no-canon">
+                <li><span class="char-name">Nikusa</span> <span class="char-origin mod">Mod: Entity / Vs. Agoti</span></li>
+                <li><span class="char-name">Whitty</span> <span class="char-origin mod">Mod: Vs. Whitty</span></li>
+                <li><span class="char-name">Sarvente & Ruv</span> <span class="char-origin mod">Mod: Mid-Fight Masses</span></li>
+                <li><span class="char-name">Garcello</span> <span class="char-origin mod">Mod: Vs. Garcello</span></li>
+                <li><span class="char-name">Tricky the Clown</span> <span class="char-origin mod">Mod: Vs. Tricky</span></li>
